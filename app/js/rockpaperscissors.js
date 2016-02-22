@@ -4,10 +4,10 @@
 'use strict';
 
 function getInput() {
-    console.log("Please choose either 'rock', 'paper', or 'scissors'.")
-    var answer = prompt()
+    var answer = prompt("Please choose either 'rock', 'paper', or 'scissors'.");
     return answer;
 }
+
 function randomPlay() {
     var randomNumber = Math.random();
     if (randomNumber < 0.33) {
@@ -61,11 +61,12 @@ function getWinner(playerMove,computerMove) {
     return winner;
 }
 
+var playerWins = 0;
+var computerWins = 0;
+
 function playToFive() {
     console.log("Let's play Rock, Paper, Scissors");
-    var playerWins = 0;
-    var computerWins = 0;
-    while (playerWins < 5 && computerWins < 5) {
+    if (playerWins !== 5 && computerWins !== 5) {
         var playerMove = getPlayerMove();
         var computerMove = getComputerMove();
         var winner = getWinner(playerMove, computerMove);
@@ -82,6 +83,7 @@ function playToFive() {
              console.log("It was a Tie")
         }
         console.log('The score is currently ' +playerWins+ " to " +computerWins );
+        return playToFive();
     }
     if (playerWins == 5) {
         console.log("You Won!")
